@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/Education.css';
+import './styles/Education.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 

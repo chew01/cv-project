@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/Practical.css';
+import './styles/Practical.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 

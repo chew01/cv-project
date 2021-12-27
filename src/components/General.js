@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/General.css';
+import './styles/General.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/SectionHeader.css';
+import './styles/SectionHeader.css';
 import edit from './assets/edit.svg';
 
 class SectionHeader extends Component {
