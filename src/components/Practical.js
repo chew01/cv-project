@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './Practical.css';
+import './css/Practical.css';
 import Field from './Field';
+import SectionHeader from './SectionHeader';
 
 class Practical extends Component {
   constructor() {
@@ -8,6 +9,7 @@ class Practical extends Component {
 
     this.state = {
       experiences: [],
+      editSection: true,
     };
   }
 
@@ -21,16 +23,39 @@ class Practical extends Component {
     });
   };
 
+  handleEditSection = () => {
+    if (this.state.editSection === true) {
+      this.setState({ editSection: false });
+    } else {
+      this.setState({ editSection: true });
+    }
+  };
+
   render() {
     const practicalExperiences = this.state.experiences.map((experience) => {
-      return <PracticalExperience key={experience.key} />;
+      return (
+        <PracticalExperience
+          key={experience.key}
+          editSection={this.state.editSection}
+        />
+      );
     });
 
     return (
       <div className="practical">
-        <p>Practical</p>
-        {practicalExperiences}
-        <button onClick={this.addExperience}>Add work experience</button>
+        <SectionHeader
+          name="Work Experience"
+          handleEdit={this.handleEditSection}
+        />
+        <div className="field-container">
+          {practicalExperiences}
+          <button
+            onClick={this.addExperience}
+            className={this.state.editSection ? '' : 'hidden'}
+          >
+            Add work experience
+          </button>
+        </div>
       </div>
     );
   }
@@ -46,10 +71,18 @@ class PracticalExperience extends Component {
   render() {
     return (
       <div className="workExp">
-        <Field field="company" />
-        <Field field="position" />
-        <Field field="start date" type="date" />
-        <Field field="end date" type="date" />
+        <Field field="company" editSection={this.props.editSection} />
+        <Field field="position" editSection={this.props.editSection} />
+        <Field
+          field="start date"
+          type="date"
+          editSection={this.props.editSection}
+        />
+        <Field
+          field="end date"
+          type="date"
+          editSection={this.props.editSection}
+        />
       </div>
     );
   }

@@ -10,9 +10,8 @@
 .practical,
 .education,
 .general {
-  flex: 1;
-  padding: 50px;
   border: 1px dashed black;
+  border-radius: 20px;
 }
 
 p {
@@ -20,4 +19,12 @@ p {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.field-container {
+  padding: 40px;
+}
+
+.hidden {
+  display: none;
 }

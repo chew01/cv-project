@@ -1,0 +1,13 @@
+.education {
+  background-color: rgb(232, 232, 228);
+}
+
+.education:hover {
+  background-color: rgb(216, 226, 220);
+}
+
+.eduExp {
+  margin-bottom: 20px;
+  border-bottom: 2px dotted black;
+  padding-bottom: 20px;
+}

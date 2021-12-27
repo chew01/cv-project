@@ -1,0 +1,13 @@
+.practical {
+  background-color: rgb(255, 229, 217);
+}
+
+.practical:hover {
+  background-color: rgb(255, 215, 186);
+}
+
+.workExp {
+  margin-bottom: 20px;
+  border-bottom: 2px dotted black;
+  padding-bottom: 20px;
+}

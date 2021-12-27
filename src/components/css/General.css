@@ -1,0 +1,7 @@
+.general {
+  background-color: rgb(250, 225, 221);
+}
+
+.general:hover {
+  background-color: rgb(252, 213, 206);
+}

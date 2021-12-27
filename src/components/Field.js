@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Field.css';
+import './css/Field.css';
 
 class Field extends Component {
   constructor() {
@@ -36,6 +36,14 @@ class Field extends Component {
   render() {
     const fieldTitle =
       this.props.field[0].toUpperCase() + this.props.field.substring(1);
+
+    if (this.props.editSection === false) {
+      return (
+        <div className="field">
+          {fieldTitle}: {this.state.data}
+        </div>
+      );
+    }
 
     if (this.state.editing === true) {
       // editing: render input and submit button
