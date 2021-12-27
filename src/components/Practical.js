@@ -64,10 +64,6 @@ class Practical extends Component {
 export default Practical;
 
 class PracticalExperience extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="workExp">
