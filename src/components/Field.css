@@ -1,0 +1,11 @@
+.field {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 20px;
+  gap: 20px;
+}
+
+button {
+  display: block;
+  padding: 5px 15px;
+}
