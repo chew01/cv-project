@@ -1,41 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './styles/SectionHeader.css';
 import edit from './assets/edit.svg';
 
-class SectionHeader extends Component {
-  constructor() {
-    super();
+const SectionHeader = (props) => {
+  const [isHovered, setIsHovered] = useState(false);
 
-    this.state = {
-      isHovered: false,
-    };
-  }
-
-  handleHover = () => {
-    if (this.state.isHovered === true) {
-      this.setState({ isHovered: false });
+  const handleHover = () => {
+    if (isHovered === true) {
+      setIsHovered(false);
     } else {
-      this.setState({ isHovered: true });
+      setIsHovered(true);
     }
   };
 
-  render() {
-    return (
-      <div
-        className="section-header"
-        onMouseEnter={this.handleHover}
-        onMouseLeave={this.handleHover}
-      >
-        {this.props.name}
-        <img
-          src={edit}
-          alt="edit"
-          className={this.state.isHovered ? 'hovered' : ''}
-          onClick={this.props.handleEdit}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      className="section-header"
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHover}
+    >
+      {props.name}
+      <img
+        src={edit}
+        alt="edit"
+        className={isHovered ? 'hovered' : ''}
+        onClick={props.handleEdit}
+      />
+    </div>
+  );
+};
 
 export default SectionHeader;

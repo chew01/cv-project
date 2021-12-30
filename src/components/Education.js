@@ -1,85 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './styles/Education.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 
-class Education extends Component {
-  constructor() {
-    super();
+const Education = (props) => {
+  const [experiences, setExperiences] = useState([]);
+  const [editSection, setEditSection] = useState(true);
 
-    this.state = {
-      experiences: [],
-      editSection: true,
-    };
-  }
-
-  addExperience = () => {
+  const addExperience = () => {
     const newExperience = {
-      key: this.state.experiences.length || 0,
+      key: experiences.length || 0,
     };
 
-    this.setState({
-      experiences: this.state.experiences.concat(newExperience),
-    });
+    setExperiences(experiences.concat(newExperience));
   };
 
-  handleEditSection = () => {
-    if (this.state.editSection === true) {
-      this.setState({ editSection: false });
+  const handleEditSection = () => {
+    if (editSection === true) {
+      setEditSection(false);
     } else {
-      this.setState({ editSection: true });
+      setEditSection(true);
     }
   };
 
-  render() {
-    const educationExperiences = this.state.experiences.map((experience) => {
-      return (
-        <EducationExperience
-          key={experience.key}
-          editSection={this.state.editSection}
-        />
-      );
-    });
-
+  const educationExperiences = experiences.map((experience) => {
     return (
-      <div className="education">
-        <SectionHeader name="Education" handleEdit={this.handleEditSection} />
-        <div className="field-container">
-          {educationExperiences}
-          <button
-            onClick={this.addExperience}
-            className={this.state.editSection ? '' : 'hidden'}
-          >
-            Add education experience
-          </button>
-        </div>
-      </div>
+      <EducationExperience key={experience.key} editSection={editSection} />
     );
-  }
-}
+  });
 
-class EducationExperience extends Component {
-  render() {
-    return (
-      <div className="eduExp">
-        <Field
-          field="name of institution"
-          editSection={this.props.editSection}
-        />
-        <Field field="title of study" editSection={this.props.editSection} />
-        <Field
-          field="start date"
-          type="date"
-          editSection={this.props.editSection}
-        />
-        <Field
-          field="end date"
-          type="date"
-          editSection={this.props.editSection}
-        />
+  return (
+    <div className="education">
+      <SectionHeader name="Education" handleEdit={handleEditSection} />
+      <div className="field-container">
+        {educationExperiences}
+        <button onClick={addExperience} className={editSection ? '' : 'hidden'}>
+          Add education experience
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+const EducationExperience = (props) => {
+  return (
+    <div className="eduExp">
+      <Field field="name of institution" editSection={props.editSection} />
+      <Field field="title of study" editSection={props.editSection} />
+      <Field field="start date" type="date" editSection={props.editSection} />
+      <Field field="end date" type="date" editSection={props.editSection} />
+    </div>
+  );
+};
 
 export default Education;
