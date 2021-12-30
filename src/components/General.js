@@ -1,44 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './styles/General.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 
-class General extends Component {
-  constructor() {
-    super();
+const General = (props) => {
+  const [editSection, setEditSection] = useState(true);
 
-    this.state = {
-      editSection: true,
-    };
-  }
-
-  handleEditSection = () => {
-    if (this.state.editSection === true) {
-      this.setState({ editSection: false });
+  const handleEditSection = () => {
+    if (editSection === true) {
+      setEditSection(false);
     } else {
-      this.setState({ editSection: true });
+      setEditSection(true);
     }
   };
 
-  render() {
-    return (
-      <div className="general">
-        <SectionHeader
-          name="Personal Information"
-          handleEdit={this.handleEditSection}
-        />
-        <div className="field-container">
-          <Field field="name" editSection={this.state.editSection} />
-          <Field
-            field="email"
-            type="email"
-            editSection={this.state.editSection}
-          />
-          <Field field="phone number" editSection={this.state.editSection} />
-        </div>
+  return (
+    <div className="general">
+      <SectionHeader
+        name="Personal Information"
+        handleEdit={handleEditSection}
+      />
+      <div className="field-container">
+        <Field field="name" editSection={editSection} />
+        <Field field="email" type="email" editSection={editSection} />
+        <Field field="phone number" editSection={editSection} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default General;

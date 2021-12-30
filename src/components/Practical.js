@@ -1,85 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './styles/Practical.css';
 import Field from './Field';
 import SectionHeader from './SectionHeader';
 
-class Practical extends Component {
-  constructor() {
-    super();
+const Practical = (props) => {
+  const [experiences, setExperiences] = useState([]);
+  const [editSection, setEditSection] = useState(true);
 
-    this.state = {
-      experiences: [],
-      editSection: true,
-    };
-  }
-
-  addExperience = () => {
+  const addExperience = () => {
     const newExperience = {
-      key: this.state.experiences.length || 0,
+      key: experiences.length || 0,
     };
 
-    this.setState({
-      experiences: this.state.experiences.concat(newExperience),
-    });
+    setExperiences(experiences.concat(newExperience));
   };
 
-  handleEditSection = () => {
-    if (this.state.editSection === true) {
-      this.setState({ editSection: false });
+  const handleEditSection = () => {
+    if (editSection === true) {
+      setEditSection(false);
     } else {
-      this.setState({ editSection: true });
+      setEditSection(true);
     }
   };
 
-  render() {
-    const practicalExperiences = this.state.experiences.map((experience) => {
-      return (
-        <PracticalExperience
-          key={experience.key}
-          editSection={this.state.editSection}
-        />
-      );
-    });
-
+  const practicalExperiences = experiences.map((experience) => {
     return (
-      <div className="practical">
-        <SectionHeader
-          name="Work Experience"
-          handleEdit={this.handleEditSection}
-        />
-        <div className="field-container">
-          {practicalExperiences}
-          <button
-            onClick={this.addExperience}
-            className={this.state.editSection ? '' : 'hidden'}
-          >
-            Add work experience
-          </button>
-        </div>
-      </div>
+      <PracticalExperience key={experience.key} editSection={editSection} />
     );
-  }
-}
+  });
+
+  return (
+    <div className="practical">
+      <SectionHeader name="Work Experience" handleEdit={handleEditSection} />
+      <div className="field-container">
+        {practicalExperiences}
+        <button onClick={addExperience} className={editSection ? '' : 'hidden'}>
+          Add work experience
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const PracticalExperience = (props) => {
+  return (
+    <div className="workExp">
+      <Field field="company" editSection={props.editSection} />
+      <Field field="position" editSection={props.editSection} />
+      <Field field="start date" type="date" editSection={props.editSection} />
+      <Field field="end date" type="date" editSection={props.editSection} />
+    </div>
+  );
+};
 
 export default Practical;
-
-class PracticalExperience extends Component {
-  render() {
-    return (
-      <div className="workExp">
-        <Field field="company" editSection={this.props.editSection} />
-        <Field field="position" editSection={this.props.editSection} />
-        <Field
-          field="start date"
-          type="date"
-          editSection={this.props.editSection}
-        />
-        <Field
-          field="end date"
-          type="date"
-          editSection={this.props.editSection}
-        />
-      </div>
-    );
-  }
-}
